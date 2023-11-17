@@ -3,7 +3,9 @@
         <h1 class="pragmatic_logo">Pragmatic</h1>
     </div>
     <div>
-        <span>nav1</span>
+        <span>
+            <a href="{% url 'articleapp:list' %}">Articles</a>
+        </span>
         <span>nav2</span>
         {% if not user.is_authenticated %}
             <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
