@@ -1,30 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div>
+        <div class="pragmatic_500px_div" style="max-width: 700px">
+            <h1>
+                {{ target_article.title }}
+            </h1>
+            <h5>
+                {{ target_article.writer.profile.nickname }}
+            </h5>
 
-    <div class="pragmatic_500px_div" style="max-width: 700px">
-        <h1>
-            {{ target_article.title }}
-        </h1>
-        <h5>
-            {{ target_article.writer.profile.nickname }}
-        </h5>
+            <hr>
+            <img src="{{ target_article.image.url }}" alt="" style="width: 100%; border-radius: 1rem; margin: 2rem 0"/>
+            <p>
+                {{ target_article.content }}
+            </p>
+            {% if target_article.writer == user %}
+                <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+                   class="btn btn-primary rounded-pill col-3 ">
+                    Update
+                </a>
+                <a href="{% url 'articleapp:delete' pk=target_article.pk %}" class="btn btn-danger rounded-pill col-3">
+                    Delete
+                </a>
+            {% endif %}
+            <hr>
 
-        <hr>
-        <img src="{{ target_article.image.url }}" alt="" style="width: 100%; border-radius: 1rem; margin: 2rem 0"/>
-        <p>
-            {{ target_article.content }}
-        </p>
-        {% if target_article.writer == user %}
-            <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-primary rounded-pill col-3 ">
-                Update
-            </a>
-            <a href="{% url 'articleapp:delete' pk=target_article.pk %}" class="btn btn-danger rounded-pill col-3">
-                Delete
-            </a>
-        {% endif %}
-        <hr>
-
-        {% include 'commentapp/create.html' with article=target_article %}
+            {% for comment in target_article.comment.all %}
+                {% include 'commentapp/detail.html' with comment=comment %}
+            {% endfor %}
+            {% include 'commentapp/create.html' with article=target_article %}
+        </div>
     </div>
 {% endblock %}
