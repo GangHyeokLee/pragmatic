@@ -27,3 +27,20 @@
         font-size: 13px;
     }
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+.pragmatic_header_nav{
+    margin: 0 0.5rem;
+}
+
+.pragmatic_header_navbar{
+    margin: 1rem 0;
+}
