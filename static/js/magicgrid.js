@@ -220,6 +220,7 @@ MagicGrid.prototype.positionItems = function positionItems() {
 
         if (this.useTransform) {
             item.style.transform = "translate(" + left + ", " + top + ")";
+            console.log(item);
         } else {
             item.style.top = top;
             item.style.left = left;
